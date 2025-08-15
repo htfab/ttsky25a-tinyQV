@@ -4,6 +4,8 @@ PROJ      = tinyqv
 # TinyQV program to run - the $PROG.bin file must be copied into the micropython sub-directory.
 PROG ?= hello
 
+DEVICE ?= /dev/ttyACM0
+
 # Files
 FILES = pico_ice.v peripherals.v ../../src/tinyQV/cpu/*.v ../../src/tinyQV/peri/uart/*.v ../../src/peri_byte_example.v ../../src/peri_full_example.v ../../src/peri_full_empty.v ../../src/peri_byte_empty.v ../../src/user_peripherals/*.v ../../src/user_peripherals/*.sv ../../src/user_peripherals/*/*.v ../../src/user_peripherals/*/*.sv
 
@@ -46,13 +48,13 @@ stats:
 	@grep "     ICESTORM_LC" nextpnr.log | awk '{gsub(/\//, "", $$3);printf("| ICE40 LCs | %s |\n", $$3);}'
 
 burn: $(PROJ).bin
-	mpremote mount . + run micropython/fpga_flash_prog.py
+	mpremote connect $(DEVICE) mount . + run micropython/fpga_flash_prog.py
 
 run:
-	mpremote mount micropython + exec "import run_tinyqv ; run_tinyqv.execute('$(PROG).bin')"
+	mpremote connect $(DEVICE) mount micropython + exec "import run_tinyqv ; run_tinyqv.execute('$(PROG).bin')"
 
 reset:
-	mpremote mount micropython + exec "import run_tinyqv ; run_tinyqv.run(query=False, stop=False)"
+	mpremote connect $(DEVICE) mount micropython + exec "import run_tinyqv ; run_tinyqv.run(query=False, stop=False)"
 
 clean:
 	rm $(PROJ).asc $(PROJ).bin $(PROJ).json

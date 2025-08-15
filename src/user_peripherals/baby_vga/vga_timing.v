@@ -12,19 +12,19 @@ module vga_timing (
     output wire blank
 );
 
-// 1024x768 60Hz CVT (63.5 MHz pixel clock, rounded to 64 MHz) - courtesy of RebelMike
+// 640x480 60Hz CVT (25.175 MHz pixel clock, rounded to 25 MHz)
 
-`define H_ROLL   31
+`define H_ROLL   19
 `define H_FPORCH (32 * 32)
-`define H_SYNC   (33 * 32 + 16)
-`define H_BPORCH (36 * 32 + 24)
-`define H_NEXT   (41 * 32 + 15)
+`define H_SYNC   (32 * 32 + 16)
+`define H_BPORCH (37 * 32 + 12)
+`define H_NEXT   (39 * 32 + 19)
 
-`define V_ROLL   47
+`define V_ROLL   29
 `define V_FPORCH (16 * 64)
-`define V_SYNC   (16 * 64 + 3)
-`define V_BPORCH (16 * 64 + 7)
-`define V_NEXT   (16 * 64 + 29)
+`define V_SYNC   (16 * 64 + 10)
+`define V_BPORCH (16 * 64 + 12)
+`define V_NEXT   (17 * 64 + 14)
 
 always @(posedge clk) begin
     if (!rst_n) begin
