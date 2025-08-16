@@ -1,4 +1,5 @@
 USER_PERIPHERALS = \
+	analog_toolkit.test \
 	byte_example \
 	edge_counter \
 	pwm_sk \
@@ -20,7 +21,6 @@ USER_PERIPHERALS = \
 	hardware_utf8.test \
 	waveforms.test \
 	ubcd.test \
-	analog_toolkit.test \
 
 .PHONY: all core prog peri $(USER_PERIPHERALS)
 
