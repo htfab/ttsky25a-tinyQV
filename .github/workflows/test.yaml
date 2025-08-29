@@ -85,7 +85,7 @@ jobs:
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
-          name: test-vcd
+          name: test-vcd-${{ matrix.target }}
           path: |
             test/*.fst
             test/results.xml
