@@ -74,5 +74,5 @@ peri_test_%: peri-%.xml
 
 .SECONDEXPANSION:
 peri_num_%: clean $$(addprefix peri_test_,$$($$(addprefix USER_PERIPHERAL_,$$*)))
-	@if [ "$(USER_PERIPHERAL_$*)" != "" ]; then cat *results.xml; fi > results.xml
+	@if [ "$(USER_PERIPHERAL_$*)" != "" ]; then cat peri-*.xml; fi > results.xml
 
