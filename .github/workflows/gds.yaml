@@ -72,6 +72,7 @@ jobs:
           - peri_num_37
           - peri_num_38
           - peri_num_39
+      fail-fast: false
     runs-on: ubuntu-24.04
     steps:
       - name: checkout repo
